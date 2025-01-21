@@ -42,3 +42,9 @@ Contributions are welcome! If you have ideas for improving the project or notice
 ---
 
 Explore the beauty and diversity of Barcelona’s urban forest with this project!
+
+## Impact Areas for this Project
+
+Árboles mediterráneos, especies ecológicas, paisajes mediterráneos, árboles ornamentales, biodiversidad, Barcelona 
+Mediterranean trees, ecological species, Mediterranean landscapes, ornamental trees, biodiversity  
+Arbres mediterranis, espècies ecològiques, paisatges mediterranis, arbres ornamentals, biodiversitat
