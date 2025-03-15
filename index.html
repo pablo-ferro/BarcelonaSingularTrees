@@ -11,11 +11,14 @@
             margin: 0;
             padding: 0;
             background-color: #ffefe6; /* Light peach background */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         .container {
             max-width: 800px; /* Adjust the width as needed */
             margin: 0 auto; /* Centers the content */
-            padding: 0 20px; /* Adds spacing on smaller screens */
+            padding: 0 10%; /* Adds spacing to avoid overlap with leaves */
+            position: relative;
+            z-index: 2; /* Ensure content is above the leaves */
         }
         h1 {
             color: #006400; /* British Racing Green */
@@ -51,9 +54,56 @@
         .section {
             margin: 40px 20px;
         }
+
+        /* Falling leaves container */
+        .leaves-left, .leaves-right {
+            position: fixed;
+            top: 0;
+            width: 20%; /* Adjust width as needed */
+            height: 100%;
+            pointer-events: none; /* Ensure leaves don't interfere with clicks */
+            z-index: 1; /* Keep leaves behind the content */
+        }
+
+        .leaves-left {
+            left: 0;
+        }
+
+        .leaves-right {
+            right: 0;
+        }
+
+        /* Individual leaf styling */
+        .leaf {
+            position: absolute;
+            width: 60px; /* Default size */
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall linear infinite;
+        }
+
+        /* Keyframes for falling animation */
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Falling leaves containers -->
+    <div class="leaves-left"></div>
+    <div class="leaves-right"></div>
+
     <div class="container">
         <h1>🌳 Árboles singulares de Barcelona</h1>
         <h2>Descubre los árboles más excepcionales de la ciudad condal en este mapa interactivo.</h2>
@@ -68,37 +118,36 @@
 
         <!-- New block with tree definitions and emojis -->
         <div class="description">
-    <strong>
-        <a href="https://es.wikipedia.org/wiki/Pinus" target="_blank">Pi (Pinus):</a>
-    </strong> 🌲 Coníferas típicas del clima mediterráneo, conocidas por sus hojas en forma de aguja y la producción de piñas. Se encuentran habitualmente en bosques secos y soleados.<br><br>
+            <strong>
+                <a href="https://es.wikipedia.org/wiki/Pinus" target="_blank">Pi (Pinus):</a>
+            </strong> 🌲 Coníferas típicas del clima mediterráneo, conocidas por sus hojas en forma de aguja y la producción de piñas. Se encuentran habitualmente en bosques secos y soleados.<br><br>
 
-    <strong>
-        <a href="https://es.wikipedia.org/wiki/Washingtonia" target="_blank">Washingtonias (Washingtonia):</a>
-    </strong> 🌴 Palmeras estilizadas y elegantes originarias de América del Norte, conocidas por sus hojas en forma de abanico. Frecuentemente utilizadas en jardines y paisajes urbanos.<br><br>
+            <strong>
+                <a href="https://es.wikipedia.org/wiki/Washingtonia" target="_blank">Washingtonias (Washingtonia):</a>
+            </strong> 🌴 Palmeras estilizadas y elegantes originarias de América del Norte, conocidas por sus hojas en forma de abanico. Frecuentemente utilizadas en jardines y paisajes urbanos.<br><br>
 
-    <strong>
-        <a href="https://es.wikipedia.org/wiki/Celtis_australis" target="_blank">Lledoner (Celtis australis):</a>
-    </strong> 🌳 Árbol caducifolio típico del Mediterráneo, apreciado por su densa sombra y sus pequeños frutos dulces, llamados almez o lledones.<br><br>
+            <strong>
+                <a href="https://es.wikipedia.org/wiki/Celtis_australis" target="_blank">Lledoner (Celtis australis):</a>
+            </strong> 🌳 Árbol caducifolio típico del Mediterráneo, apreciado por su densa sombra y sus pequeños frutos dulces, llamados almez o lledones.<br><br>
 
-    <strong>
-        <a href="https://es.wikipedia.org/wiki/Eucalyptus" target="_blank">Eucaliptus (Eucalyptus):</a>
-    </strong> 🌿 Árboles originarios de Australia, conocidos por su rápido crecimiento y sus hojas aromáticas ricas en aceites esenciales. Son comunes en plantaciones y como ornamentales.<br><br>
+            <strong>
+                <a href="https://es.wikipedia.org/wiki/Eucalyptus" target="_blank">Eucaliptus (Eucalyptus):</a>
+            </strong> 🌿 Árboles originarios de Australia, conocidos por su rápido crecimiento y sus hojas aromáticas ricas en aceites esenciales. Son comunes en plantaciones y como ornamentales.<br><br>
 
-    <strong>
-        <a href="https://es.wikipedia.org/wiki/Ceratonia_siliqua" target="_blank">Garrofer (Ceratonia siliqua):</a>
-    </strong> 🌰 Árbol mediterráneo resistente, conocido por sus frutos en forma de vaina, las algarrobas, utilizadas tradicionalmente en alimentación y cocina.<br><br>
+            <strong>
+                <a href="https://es.wikipedia.org/wiki/Ceratonia_siliqua" target="_blank">Garrofer (Ceratonia siliqua):</a>
+            </strong> 🌰 Árbol mediterráneo resistente, conocido por sus frutos en forma de vaina, las algarrobas, utilizadas tradicionalmente en alimentación y cocina.<br><br>
 
-    <strong>
-        <a href="https://es.wikipedia.org/wiki/Platanus" target="_blank">Plátanos (Platanus):</a>
-    </strong> 🍂 Árboles caducifolios grandes y robustos, a menudo plantados en paseos y calles por su capacidad de dar sombra. Son fácilmente reconocibles por su corteza escamosa.<br><br>
+            <strong>
+                <a href="https://es.wikipedia.org/wiki/Platanus" target="_blank">Plátanos (Platanus):</a>
+            </strong> 🍂 Árboles caducifolios grandes y robustos, a menudo plantados en paseos y calles por su capacidad de dar sombra. Son fácilmente reconocibles por su corteza escamosa.<br><br>
 
-    <strong>
-        <a href="https://es.wikipedia.org/wiki/Quercus_ilex" target="_blank">Encina (Quercus ilex):</a>
-    </strong> 🌳 Árbol perenne característico de los bosques mediterráneos, con hojas duras y oscuras. Su madera es muy valorada y sus bellotas son alimento para la fauna.<br><br>
+            <strong>
+                <a href="https://es.wikipedia.org/wiki/Quercus_ilex" target="_blank">Encina (Quercus ilex):</a>
+            </strong> 🌳 Árbol perenne característico de los bosques mediterráneos, con hojas duras y oscuras. Su madera es muy valorada y sus bellotas son alimento para la fauna.<br><br>
 
-    Estas especies son representativas del paisaje mediterráneo y tienen una gran importancia ecológica, cultural y ornamental.
-</div>
-
+            Estas especies son representativas del paisaje mediterráneo y tienen una gran importancia ecológica, cultural y ornamental.
+        </div>
 
         <div class="description">
             En esta visualización, exploramos algunos de los árboles más singulares de Barcelona.
@@ -111,5 +160,61 @@
             Actualizado en Marzo de 2025.
         </div>
     </div>
+
+    <script>
+        // Function to create a leaf
+        function createLeaf(container) {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+
+            // Get current month
+            const month = new Date().getMonth() + 1; // Months are 0-indexed in JavaScript
+
+            // Set leaf color and size based on the month
+            if (month >= 3 && month <= 5) { // March, April, May (spring)
+                leaf.style.backgroundImage = 'url("leaf-green-fresh.png")';
+                leaf.style.width = '60px';
+                leaf.style.height = '60px';
+            } else if (month >= 6 && month <= 8) { // June, July, August (summer)
+                leaf.style.backgroundImage = 'url("leaf-dark-green.png")';
+                leaf.style.width = '75px';
+                leaf.style.height = '75px';
+            } else if (month >= 9 && month <= 11) { // September, October, November (autumn)
+                leaf.style.backgroundImage = 'url("leaf-orange.png")';
+                leaf.style.width = '60px';
+                leaf.style.height = '60px';
+            } else { // December, January, February (winter)
+                leaf.style.backgroundImage = 'url("leaf-white.png")';
+                leaf.style.width = '45px';
+                leaf.style.height = '45px';
+            }
+
+            // Randomize starting position and animation duration
+            leaf.style.left = `${Math.random() * 100}%`;
+            leaf.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5-10 seconds
+
+            container.appendChild(leaf);
+
+            // Remove leaf after animation ends to optimize performance
+            leaf.addEventListener('animationend', () => {
+                leaf.remove();
+            });
+        }
+
+        // Function to generate leaves
+        function generateLeaves() {
+            const leavesLeft = document.querySelector('.leaves-left');
+            const leavesRight = document.querySelector('.leaves-right');
+
+            // Create a new leaf every 500ms
+            setInterval(() => {
+                createLeaf(leavesLeft);
+                createLeaf(leavesRight);
+            }, 500);
+        }
+
+        // Start generating leaves when the page loads
+        window.onload = generateLeaves;
+    </script>
 </body>
 </html>
