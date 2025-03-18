@@ -97,16 +97,33 @@
                 opacity: 0;
             }
         }
+
+        /* Language switch button */
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #006400;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
+    <!-- Language switch button -->
+    <button class="language-switch" onclick="switchLanguage()">Català</button>
+
     <!-- Falling leaves containers -->
     <div class="leaves-left"></div>
     <div class="leaves-right"></div>
 
     <div class="container">
-        <h1>🌳 Árboles singulares de Barcelona</h1>
-        <h2>Descubre los árboles más excepcionales de la ciudad condal en este mapa interactivo.</h2>
+        <h1 id="title">🌳 Árboles singulares de Barcelona</h1>
+        <h2 id="subtitle">Descubre los árboles más excepcionales de la ciudad condal en este mapa interactivo.</h2>
 
         <div class="section">
             <iframe src="barcelona_trees_map.html"></iframe>
@@ -117,7 +134,7 @@
         </div>
 
         <!-- New block with tree definitions and emojis -->
-        <div class="description">
+        <div class="description" id="tree-description">
             <strong>
                 <a href="https://es.wikipedia.org/wiki/Pinus" target="_blank">Pi (Pinus):</a>
             </strong> 🌲 Coníferas típicas del clima mediterráneo, conocidas por sus hojas en forma de aguja y la producción de piñas. Se encuentran habitualmente en bosques secos y soleados.<br><br>
@@ -149,13 +166,13 @@
             Estas especies son representativas del paisaje mediterráneo y tienen una gran importancia ecológica, cultural y ornamental.
         </div>
 
-        <div class="description">
+        <div class="description" id="explanation">
             En esta visualización, exploramos algunos de los árboles más singulares de Barcelona.
             Estos ejemplares se destacan por su belleza, historia y contribución al paisaje urbano en distintos barrios como Ciutat Vella, Nou Barris, Les Corts, Eixample, Sarrià-Sant Gervasi, Gràcia, Sants-Montjuïc.
             El propósito de esta web es inspirar un mayor respeto por el entorno natural y destacar su importancia cultural.
         </div>
 
-        <div class="footer">
+        <div class="footer" id="footer">
             Desarrollado por <a href="https://github.com/pablo-ferro/" target="_blank">Pablo Ferros</a> / Datos abiertos del Ayuntamiento de Barcelona.<br>
             Actualizado en Marzo de 2025.
         </div>
@@ -215,6 +232,108 @@
 
         // Start generating leaves when the page loads
         window.onload = generateLeaves;
+
+        // Language switch function
+        function switchLanguage() {
+            const title = document.getElementById('title');
+            const subtitle = document.getElementById('subtitle');
+            const treeDescription = document.getElementById('tree-description');
+            const explanation = document.getElementById('explanation');
+            const footer = document.getElementById('footer');
+            const button = document.querySelector('.language-switch');
+
+            if (button.textContent === 'Català') {
+                // Switch to Catalan
+                title.textContent = '🌳 Arbres singulars de Barcelona';
+                subtitle.textContent = 'Descobreix els arbres més excepcionals de la ciutat comtal en aquest mapa interactiu.';
+                treeDescription.innerHTML = `
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Pinus" target="_blank">Pi (Pinus):</a>
+                    </strong> 🌲 Coníferes típiques del clima mediterrani, conegudes per les seves fulles en forma d'agulla i la producció de pinyes. Es troben habitualment en boscos secs i assolellats.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Washingtonia" target="_blank">Washingtonies (Washingtonia):</a>
+                    </strong> 🌴 Palmeres estilitzades i elegants originàries d'Amèrica del Nord, conegudes per les seves fulles en forma de ventall. Freqüentment utilitzades en jardins i paisatges urbans.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Celtis_australis" target="_blank">Lledoner (Celtis australis):</a>
+                    </strong> 🌳 Arbre caducifoli típic del Mediterrani, apreciat per la seva densa ombra i els seus petits fruits dolços, anomenats almes o lledons.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Eucalyptus" target="_blank">Eucaliptus (Eucalyptus):</a>
+                    </strong> 🌿 Arbres originaris d'Austràlia, coneguts pel seu ràpid creixement i les seves fulles aromàtiques riques en olis essencials. Són comuns en plantacions i com a ornamentals.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Ceratonia_siliqua" target="_blank">Garrofer (Ceratonia siliqua):</a>
+                    </strong> 🌰 Arbre mediterrani resistent, conegut pels seus fruits en forma de beina, les garrofes, utilitzades tradicionalment en alimentació i cuina.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Platanus" target="_blank">Plàtans (Platanus):</a>
+                    </strong> 🍂 Arbres caducifolis grans i robustos, sovint plantats en passejos i carrers per la seva capacitat de donar ombra. Són fàcilment recognoscibles per la seva escorça escamosa.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Quercus_ilex" target="_blank">Alzina (Quercus ilex):</a>
+                    </strong> 🌳 Arbre perenne característic dels boscos mediterranis, amb fulles dures i fosques. La seva fusta és molt valorada i les seves glans són aliment per a la fauna.<br><br>
+
+                    Aquestes espècies són representatives del paisatge mediterrani i tenen una gran importància ecològica, cultural i ornamental.
+                `;
+                explanation.innerHTML = `
+                    En aquesta visualització, explorem alguns dels arbres més singulars de Barcelona.
+                    Aquests exemplars es destaquen per la seva bellesa, història i contribució al paisatge urbà en diferents barris com Ciutat Vella, Nou Barris, Les Corts, Eixample, Sarrià-Sant Gervasi, Gràcia, Sants-Montjuïc.
+                    El propòsit d'aquesta web és inspirar un major respecte per l'entorn natural i destacar-ne la importància cultural.
+                `;
+                footer.innerHTML = `
+                    Desenvolupat per <a href="https://github.com/pablo-ferro/" target="_blank">Pablo Ferros</a> / Dades obertes de l'Ajuntament de Barcelona.<br>
+                    Actualitzat al març de 2025.
+                `;
+                button.textContent = 'Español';
+            } else {
+                // Switch back to Spanish
+                title.textContent = '🌳 Árboles singulares de Barcelona';
+                subtitle.textContent = 'Descubre los árboles más excepcionales de la ciudad condal en este mapa interactivo.';
+                treeDescription.innerHTML = `
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Pinus" target="_blank">Pi (Pinus):</a>
+                    </strong> 🌲 Coníferas típicas del clima mediterráneo, conocidas por sus hojas en forma de aguja y la producción de piñas. Se encuentran habitualmente en bosques secos y soleados.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Washingtonia" target="_blank">Washingtonias (Washingtonia):</a>
+                    </strong> 🌴 Palmeras estilizadas y elegantes originarias de América del Norte, conocidas por sus hojas en forma de abanico. Frecuentemente utilizadas en jardines y paisajes urbanos.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Celtis_australis" target="_blank">Lledoner (Celtis australis):</a>
+                    </strong> 🌳 Árbol caducifolio típico del Mediterráneo, apreciado por su densa sombra y sus pequeños frutos dulces, llamados almez o lledones.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Eucalyptus" target="_blank">Eucaliptus (Eucalyptus):</a>
+                    </strong> 🌿 Árboles originarios de Australia, conocidos por su rápido crecimiento y sus hojas aromáticas ricas en aceites esenciales. Son comunes en plantaciones y como ornamentales.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Ceratonia_siliqua" target="_blank">Garrofer (Ceratonia siliqua):</a>
+                    </strong> 🌰 Árbol mediterráneo resistente, conocido por sus frutos en forma de vaina, las algarrobas, utilizadas tradicionalmente en alimentación y cocina.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Platanus" target="_blank">Plátanos (Platanus):</a>
+                    </strong> 🍂 Árboles caducifolios grandes y robustos, a menudo plantados en paseos y calles por su capacidad de dar sombra. Son fácilmente reconocibles por su corteza escamosa.<br><br>
+
+                    <strong>
+                        <a href="https://es.wikipedia.org/wiki/Quercus_ilex" target="_blank">Encina (Quercus ilex):</a>
+                    </strong> 🌳 Árbol perenne característico de los bosques mediterráneos, con hojas duras y oscuras. Su madera es muy valorada y sus bellotas son alimento para la fauna.<br><br>
+
+                    Estas especies son representativas del paisaje mediterráneo y tienen una gran importancia ecológica, cultural y ornamental.
+                               `;
+                explanation.innerHTML = `
+                    En esta visualización, exploramos algunos de los árboles más singulares de Barcelona.
+                    Estos ejemplares se destacan por su belleza, historia y contribución al paisaje urbano en distintos barrios como Ciutat Vella, Nou Barris, Les Corts, Eixample, Sarrià-Sant Gervasi, Gràcia, Sants-Montjuïc.
+                    El propósito de esta web es inspirar un mayor respeto por el entorno natural y destacar su importancia cultural.
+                `;
+                footer.innerHTML = `
+                    Desarrollado por <a href="https://github.com/pablo-ferro/" target="_blank">Pablo Ferros</a> / Datos abiertos del Ayuntamiento de Barcelona.<br>
+                    Actualizado en Marzo de 2025.
+                `;
+                button.textContent = 'Català';
+            }
+        }
     </script>
 </body>
 </html>
